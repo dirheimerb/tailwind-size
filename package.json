@@ -1,0 +1,58 @@
+{
+  "name": "tailwind-size",
+  "version": "1.0.1",
+  "description": "A simple utility to generate tailwindcss classes for width and height",
+  "main": "dist/bundle.js",
+  "types": "dist/bundle.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/bundle.js",
+      "require": "./dist/bundle.js"
+    },
+    "./dist/index.js": {
+      "import": "./dist/bundle.js",
+      "require": "./dist/bundle.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dirheimerb/tailwind-size.git"
+  },
+  "scripts": {
+    "build:esbuild": "esbuild src/index.ts --bundle --outfile=dist/bundle.js --platform=node --target=node20",
+    "build:tsup": "tsup",
+    "build:css": "tailwindcss -i src/styles.css -o src/tailwind.css",
+    "dev": "tsup src/index.ts --watch --onEnd \"npm run build\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api": "api-extractor run --local",
+    "build:ts": "tsc --declaration --emitDeclarationOnly",
+    "build": "concurrently \"pnpm run build:tsup\" \"pnpm run build:css\"",
+    "serve": "lite-server"
+  },
+  "keywords": [
+    "tailwindcss",
+    "utility",
+    "width",
+    "height",
+    "size"
+  ],
+  "author": "Bradley Dirheimer",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.20.2",
+    "esbuild-css-modules-plugin": "^3.1.1",
+    "lite-server": "^2.6.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
+  }
+}
